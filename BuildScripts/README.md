@@ -35,8 +35,8 @@ Open `<Project.Name>.sln` and build with `Ctrl+Shift+B` or **Build > Build Solut
 
 ### Command Line
 
-```powershell
-& "C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\MSBuild.exe" Dnn.Modules.Newsletters.sln -p:Configuration=Release
+```bash
+"C:\Program Files\Microsoft Visual Studio\18\Community\MSBuild\Current\Bin\MSBuild.exe" Dnn.Libraries.DynamicRoutes.sln -p:Configuration=Release
 ```
 
 ## Packaging
