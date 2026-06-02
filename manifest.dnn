@@ -1,0 +1,74 @@
+<dotnetnuke type="Package" version="5.0">
+  <packages>
+    <package name="DynamicRoutes" type="Library" version="01.00.00">
+      <friendlyName>Dynamic Routes</friendlyName>
+      <description>Dynamic segment routing for DNN. Intercepts URLs, resolves slug-based routes (Next.js convention), and rewrites to DNN pages.</description>
+      <owner>
+        <name>Your Name</name>
+        <organization>Your Organization</organization>
+        <url>https://example.com</url>
+        <email>admin@example.com</email>
+      </owner>
+      <license src="License.txt"></license>
+      <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
+      <azureCompatible>true</azureCompatible>
+      <dependencies>
+        <dependency type="CoreVersion">08.00.00</dependency>
+      </dependencies>
+      <components>
+
+        <!-- Assembly -->
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>Dnn.Libraries.DynamicRoutes.dll</name>
+              <path>bin</path>
+            </assembly>
+          </assemblies>
+        </component>
+
+        <!-- web.config: register HTTP modules -->
+        <component type="Config">
+          <config>
+            <configFile>web.config</configFile>
+            <install>
+              <configuration>
+                <nodes>
+                  <!-- Remove any existing entries first so re-installs don't
+                       create duplicate module registrations (IIS 500.19). -->
+                  <node path="/configuration/system.webServer/modules/add[@name='DynamicRoutes']"
+                        action="remove" />
+                  <node path="/configuration/system.webServer/modules/add[@name='DynamicRoutesFix']"
+                        action="remove" />
+                  <node path="/configuration/system.webServer/modules/add[@name='UrlRewrite']"
+                        action="insertbefore" key="name" collision="overwrite">
+                    <add name="DynamicRoutes"
+                         type="Dnn.Libraries.DynamicRoutes.DynamicRoutes, Dnn.Libraries.DynamicRoutes"
+                         preCondition="managedHandler" />
+                  </node>
+                  <node path="/configuration/system.webServer/modules/add[@name='UrlRewrite']"
+                        action="insertafter" key="name" collision="overwrite">
+                    <add name="DynamicRoutesFix"
+                         type="Dnn.Libraries.DynamicRoutes.DynamicRoutesFix, Dnn.Libraries.DynamicRoutes"
+                         preCondition="managedHandler" />
+                  </node>
+                </nodes>
+              </configuration>
+            </install>
+            <uninstall>
+              <configuration>
+                <nodes>
+                  <node path="/configuration/system.webServer/modules/add[@name='DynamicRoutes']"
+                        action="remove" />
+                  <node path="/configuration/system.webServer/modules/add[@name='DynamicRoutesFix']"
+                        action="remove" />
+                </nodes>
+              </configuration>
+            </uninstall>
+          </config>
+        </component>
+
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>

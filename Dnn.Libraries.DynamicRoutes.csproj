@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="BuildScripts\BuildProperties.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Dnn.Libraries.DynamicRoutes</AssemblyName>
+    <RootNamespace>Dnn.Libraries.DynamicRoutes</RootNamespace>
+    <NuGetAudit>false</NuGetAudit>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <MSBuildWarningsAsMessages>MSB3277</MSBuildWarningsAsMessages>
+
+    <!-- DNN Package properties used by ModulePackage.targets -->
+    <DNNFileName>manifest</DNNFileName>
+    <PackageName>Dnn.Libraries.DynamicRoutes</PackageName>
+    <Extension>zip</Extension>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="test\**" />
+    <None Remove="test\**" />
+    <EmbeddedResource Remove="test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetNuke.Core" Version="9.11.0" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <Import Project="BuildScripts\MSBuild.Community.Tasks.Targets" />
+  <Import Project="BuildScripts\ModulePackage.targets" />
+
+</Project>

@@ -1,0 +1,9 @@
+<h3>Route Config v01.00.00</h3>
+<ul>
+    <li>Initial release</li>
+    <li>Dynamic segment routing</li>
+    <li>Automatic slug-based URL rewriting</li>
+    <li>Community access control</li>
+    <li>DNN 301 redirect fix for slug routes</li>
+    <li>Auto-detection of physical directories</li>
+</ul>

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>Dnn.Libraries.DynamicRoutes.Tests</RootNamespace>
+    <AssemblyName>Dnn.Libraries.DynamicRoutes.Tests</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\DynamicRoutes.cs" Link="DynamicRoutes.cs" />
+    <Compile Include="..\DynamicRoutesFix.cs" Link="DynamicRoutesFix.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetNuke.Core" Version="9.11.0" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+</Project>
